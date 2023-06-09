@@ -8,20 +8,20 @@ services:
     depends_on:
       - database
     environment:
-      - DRUPAL_DATABASE_HOST=database
-      - DRUPAL_DATABASE_PORT_NUMBER=3306
-      - DRUPAL_DATABASE_NAME=drupal
-      - DRUPAL_DATABASE_USER=drupal
-      - DRUPAL_DATABASE_PASSWORD=drupal
+      - MARIADB_HOST=database
+      - MARIADB_PORT_NUMBER=3306
+      - DRUPAL_DATABASE_NAME=final
+      - DRUPAL_DATABASE_USER=YAM428
+      - DRUPAL_DATABASE_PASSWORD=<030117044>
     volumes:
       - drupal_data:/bitnami
 
   database:
     image: bitnami/mariadb:latest
     environment:
-      - MARIADB_USER=drupal
-      - MARIADB_PASSWORD=drupal
-      - MARIADB_DATABASE=drupal
+      - MARIADB_USER=YAM428
+      - MARIADB_PASSWORD=<030117044>
+      - MARIADB_DATABASE=final
     volumes:
       - db_data:/bitnami
 
@@ -29,6 +29,7 @@ services:
     image: nginx
     ports:
       - 8080:80
+      - 444:444
     volumes:
       - drupal_data:/usr/share/nginx/html
 
